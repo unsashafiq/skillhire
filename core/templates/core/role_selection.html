@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex items-center justify-center min-h-screen bg-[linear-gradient(135deg,_#82ffe4,_#264653)] px-4">
+    <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md text-center">
+        <h1 class="text-3xl font-bold text-[#264653] mb-6">Welcome to SkillHire</h1>
+        <p class="text-gray-600 mb-10">Please select your role to get started:</p>
+
+        <div class="space-y-4">
+            <a href="{% url 'worker_register' %}"
+               class="block w-full text-lg font-medium py-4 rounded-xl text-white transition duration-300 border-2 border-[#a8dadc] bg-[#264653] hover:bg-[#a8e0f8] hover:text-[#264653] hover:shadow-md">
+                I am a Worker
+            </a>
+
+            <a href="{% url 'employer-signup' %}"
+               class="block w-full text-lg font-medium py-4 rounded-xl text-white transition duration-300 border-2 border-[#a8dadc] bg-[#264653] hover:bg-[#a8e0f8] hover:text-[#264653] hover:shadow-md">
+                I am an Employer
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

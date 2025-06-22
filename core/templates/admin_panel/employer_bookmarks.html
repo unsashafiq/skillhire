@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="p-6 bg-white shadow rounded-md">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+        Bookmarked Workers by {{ employer.name }}
+    </h2>
+
+    {% if bookmarks %}
+        <table class="min-w-full table-auto border-collapse border border-gray-300">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="px-4 py-2 border border-gray-300 text-left">Name</th>
+                    <th class="px-4 py-2 border border-gray-300 text-left">Phone</th>
+                    <th class="px-4 py-2 border border-gray-300 text-left">Skill</th>
+                    <th class="px-4 py-2 border border-gray-300 text-left">Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bookmark in bookmarks %}
+                <tr class="hover:bg-gray-50">
+                    <td class="px-4 py-2 border border-gray-300">{{ bookmark.worker.name }}</td>
+                    <td class="px-4 py-2 border border-gray-300">{{ bookmark.worker.phone }}</td>
+                    <td class="px-4 py-2 border border-gray-300">{{ bookmark.worker.skill }}</td>
+                    <td class="px-4 py-2 border border-gray-300">{{ bookmark.worker.location }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="text-gray-600">No bookmarked workers found.</p>
+    {% endif %}
+
+    <a href="{% url 'admin-employer-dashboard' %}" class="inline-block mt-6 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition">
+        ← Back to Employers
+    </a>
+</div>
+{% endblock %}

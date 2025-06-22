@@ -1,0 +1,86 @@
+{% load tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome to SkillHire</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, rgba(42, 157, 143, 1) 0%, rgba(0, 180, 137, 1) 100%);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      animation: fadeInScale 2s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeInScale {
+      0% {
+        opacity: 0;
+        transform: scale(0.7);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .buttons {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border: 2px solid #2a9d8f;
+      border-radius: 8px;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-get-started,
+    .btn-support {
+      background-color: #2a9d8f;
+      color: #ffffff;
+    }
+
+    .btn-get-started:hover,
+    .btn-support:hover {
+      background-color: #ffffff;
+      color: #2a9d8f;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to SkillHire</h1>
+  <div class="buttons">
+    <a href="{% url 'support_page' %}">
+      <button class="btn btn-support">Support</button>
+    </a>
+    <a href="{% url 'role_selection' %}">
+      <button class="btn btn-get-started">Get Started</button>
+    </a>
+    <a href="{% url 'job_list' %}">
+      <button class="btn btn-get-started">View Jobs</button>
+    </a>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="text-3xl mb-6">Worker Registration</h2>
+
+<form method="POST" enctype="multipart/form-data" class="max-w-md mx-auto space-y-4">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn-get-started w-full py-3 rounded-lg text-lg font-semibold">
+    Register
+  </button>
+</form>
+{% endblock %}

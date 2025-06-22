@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-6xl mx-auto mt-10 bg-white shadow-xl p-8 rounded-lg">
+  <h2 class="text-3xl font-bold text-green-700 mb-8">Job Applications</h2>
+
+  {% if applications %}
+  <div class="overflow-x-auto rounded-lg shadow">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-green-400 text-white">
+        <tr>
+          <th class="px-4 py-3 text-left">Job Title</th>
+          <th class="px-4 py-3 text-left">Worker Name</th>
+          <th class="px-4 py-3 text-left">Skill</th>
+          <th class="px-4 py-3 text-left">Location</th>
+          <th class="px-4 py-3 text-left">Phone</th>
+          <th class="px-4 py-3 text-left">Message</th>
+          <th class="px-4 py-3 text-left">Applied On</th>
+          <th class="px-4 py-3 text-center">Bookmark</th>
+          <th class="px-4 py-3 text-center">Call</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        {% for app in applications %}
+        <tr class="hover:bg-gray-100 transition">
+          <td class="px-4 py-3">{{ app.job.title }}</td>
+          <td class="px-4 py-3">{{ app.worker.name }}</td>
+          <td class="px-4 py-3">{{ app.worker.skill }}</td>
+          <td class="px-4 py-3">{{ app.worker.location }}</td>
+          <td class="px-4 py-3">{{ app.worker.phone }}</td>
+          <td class="px-4 py-3">{{ app.message|default:"-" }}</td>
+          <td class="px-4 py-3">{{ app.created_at|date:"M d, Y" }}</td>
+          <td class="px-4 py-3 text-center">
+            <button 
+              class="bookmark-btn px-2 py-1 text-sm font-semibold text-blue-600 hover:text-blue-800 transition" 
+              data-id="{{ app.id }}">
+              {% if app.bookmarked %}★{% else %}☆{% endif %}
+            </button>
+          </td>
+          <td class="px-4 py-3 text-center">
+            <a href="tel:{{ app.worker.phone }}" class="text-green-600 ">Call</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p class="text-gray-600 mt-4">No applications have been received yet.</p>
+  {% endif %}
+</div>
+
+<script>
+  document.querySelectorAll('.bookmark-btn').forEach(button => {
+    button.addEventListener('click', function () {
+      const appId = this.getAttribute('data-id');
+      fetch(`/applications/${appId}/bookmark/`, {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': '{{ csrf_token }}',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.bookmarked) {
+          this.textContent = '★';
+        } else {
+          this.textContent = '☆';
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}

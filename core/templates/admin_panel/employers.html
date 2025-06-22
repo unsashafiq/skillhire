@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-4">Employer Management</h2>
+
+<table class="min-w-full bg-white shadow-md rounded">
+  <thead>
+    <tr class="bg-gray-200 text-gray-700">
+      <th class="py-2 px-4">Name</th>
+      <th class="py-2 px-4">Email</th>
+      <th class="py-2 px-4">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for employer in employers %}
+    <tr class="border-t">
+      <td class="py-2 px-4">{{ employer.name }}</td>
+      <td class="py-2 px-4">{{ employer.email }}</td>
+      <td class="py-2 px-4">
+        <a href="{% url 'delete_employer' employer.id %}" class="text-red-500 hover:underline">Delete</a> |
+        {% if employer.is_blocked %}
+          <a href="{% url 'toggle_block_employer' employer.id %}" class="text-green-500 hover:underline">Unblock</a>
+        {% else %}
+          <a href="{% url 'toggle_block_employer' employer.id %}" class="text-yellow-500 hover:underline">Block</a>
+        {% endif %}
+        |
+        <a href="{% url 'view_employer_jobs' employer.id %}" class="text-blue-500 hover:underline">Jobs</a> |
+        <a href="{% url 'view_employer_bookmarks' employer.id %}" class="text-purple-500 hover:underline">Bookmarks</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

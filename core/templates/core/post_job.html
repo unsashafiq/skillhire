@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+{% if success %}
+  <div class="max-w-2xl mx-auto mt-10">
+    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-6" role="alert">
+      <strong class="font-bold">Success!</strong>
+      <span class="block sm:inline">Job posted successfully.</span>
+    </div>
+    <div class="text-center">
+      <a href="{% url 'employer-dashboard' %}" class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded shadow">
+        Back to Dashboard
+      </a>
+    </div>
+  </div>
+
+{% else %}
+  <div class="max-w-3xl mx-auto bg-white p-8 shadow-md rounded-lg mt-10">
+    <h2 class="text-2xl font-bold mb-6 text-gray-700 text-center">Post a New Job</h2>
+
+    <form method="POST" class="space-y-6">
+      {% csrf_token %}
+
+      <!-- Job Title -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Job Title</label>
+        {{ form.title|add_class:"w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" }}
+      </div>
+
+      <!-- Skill Required -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Skill Required</label>
+        {{ form.skill_required|add_class:"w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" }}
+      </div>
+
+      <!-- Job Description -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Job Description</label>
+        {{ form.description|add_class:"w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" }}
+      </div>
+
+      <!-- Location -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Location (Optional)</label>
+        {{ form.location|add_class:"w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" }}
+      </div>
+
+      <!-- ✅ Budget -->
+     
+      <!-- Submit Button -->
+      <div class="pt-4 text-center">
+        <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded shadow font-medium">
+          Post Job
+        </button>
+      </div>
+    </form>
+  </div>
+{% endif %}
+
+{% endblock %}
+
+

@@ -1,0 +1,47 @@
+<!-- admin_panel/templates/admin_panel/edit_worker.html -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Worker - SkillHire Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-emerald-600 to-emerald-400 text-white shadow">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-semibold">Edit Worker Profile</h1>
+            <a href="{% url 'worker_list' %}" class="text-sm bg-white text-emerald-600 px-4 py-2 rounded shadow hover:bg-gray-100">
+                Back to Worker List
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto bg-white shadow mt-10 rounded-lg p-8">
+        <form method="post" class="space-y-6">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">{{ field.label_tag }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <p class="text-sm text-red-500 mt-1">{{ field.errors|striptags }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <div class="pt-4">
+                <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-6 rounded shadow">
+                    Save Changes
+                </button>
+            </div>
+        </form>
+    </main>
+
+</body>
+</html>

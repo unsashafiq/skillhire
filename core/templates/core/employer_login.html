@@ -1,0 +1,55 @@
+
+
+{% load static %}
+{% load form_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employer Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
+        <h2 class="text-2xl font-semibold mb-6 text-center text-green-700">Employer Sign In</h2>
+
+        <form method="post" action="{% url 'employer-login' %}" class="space-y-4">
+            {% csrf_token %}
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="text-red-500 text-sm mb-2">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" name="email" class="w-full border border-gray-300 p-2 rounded" required>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Password</label>
+                <div class="relative">
+                    <input type="password" name="password" id="password" class="w-full border border-gray-300 p-2 rounded pr-10" required>
+                    <button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 focus:outline-none">
+                        👁️
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">
+                Sign In
+            </button>
+        </form>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+        }
+    </script>
+</body>
+</html>

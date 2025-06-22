@@ -1,0 +1,109 @@
+<!-- core/templates/core/worker_register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Worker Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #82ffe4, #264653);
+        }
+        .custom-border {
+            border-color: #a8dadc;
+        }
+        .btn-bg {
+            background-color: #264653;
+        }
+        .btn-bg:hover {
+            background-color: #a8e0f8;
+            color: #264653;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-xl border custom-border">
+        <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center">Worker Registration</h2>
+        {% if form.errors %}
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+        <strong>Oops!</strong> Please correct the errors below.
+    </div>
+{% endif %}
+        <form method="post" enctype="multipart/form-data" class="space-y-4">
+            {% csrf_token %}
+
+            <!-- Name -->
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Full Name</label>
+                <input type="text" name="name" placeholder="Enter your full name"
+                       class="w-full px-4 py-2 rounded-lg border custom-border focus:outline-none focus:ring-2 focus:ring-[#264653]" required>
+            </div>
+
+            <!-- ID Card Number -->
+            <div class=>
+    <label class="block text-gray-700 font-semibold mb-1">ID Card Number</label>
+    <input type="text" name="id_card_number" value="{{ form.id_card_number.value|default_if_none:'' }}" placeholder="e.g., 35202-1234567-1"
+           class="w-full px-4 py-2 rounded-lg border custom-border focus:outline-none focus:ring-2 focus:ring-[#264653]">
+    {% if form.id_card_number.errors %}
+        <p class="text-red-600 text-sm mt-1">{{ form.id_card_number.errors.0 }}</p>
+    {% endif %}
+</div>
+
+
+            <!-- Phone -->
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Phone Number</label>
+                <input type="text" name="phone" placeholder="03XX-XXXXXXX"
+                       class="w-full px-4 py-2 rounded-lg border custom-border focus:outline-none focus:ring-2 focus:ring-[#264653]" required>
+            </div>
+
+            <!-- Location -->
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Location</label>
+                <input type="text" name="location" placeholder="Enter your city"
+                       class="w-full px-4 py-2 rounded-lg border custom-border focus:outline-none focus:ring-2 focus:ring-[#264653]" required>
+            </div>
+
+            <!-- Profile Picture -->
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Profile Picture</label>
+                <input type="file" name="profile_picture"
+                       class="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg
+                              file:border-0 file:text-sm file:font-semibold file:bg-[#82ffe4] file:text-[#264653]
+                              hover:file:bg-[#a8e0f8]" required>
+            </div>
+
+            <!-- Skill -->
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Skill</label>
+                <input type="text" name="skill" placeholder="e.g., Plumber, Electrician"
+                       class="w-full px-4 py-2 rounded-lg border custom-border focus:outline-none focus:ring-2 focus:ring-[#264653]" required>
+            </div>
+
+            <!-- Experience (Optional) -->
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Experience (optional)</label>
+                <textarea name="experience" rows="3" placeholder="Describe your work experience"
+                          class="w-full px-4 py-2 rounded-lg border custom-border focus:outline-none focus:ring-2 focus:ring-[#264653]"></textarea>
+            </div>
+
+            <!-- Is Available Toggle -->
+            <div class="flex items-center">
+                <label for="is_available" class="text-gray-700 font-semibold mr-4">Available for Work:</label>
+                <input type="checkbox" name="is_available" id="is_available"
+                       class="w-5 h-5 text-[#264653] focus:ring-[#264653] rounded">
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex justify-between items-center mt-6">
+                <a href="{% url 'welcome' %}" class="btn-bg text-white px-6 py-2 rounded-lg font-semibold transition duration-300"> Back to Home</a>
+                <button type="submit"
+                        class="btn-bg text-white px-6 py-2 rounded-lg font-semibold transition duration-300">
+                    Register
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
