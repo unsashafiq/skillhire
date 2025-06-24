@@ -20,13 +20,13 @@
 <table>
   <tr>
     <td><strong>Welcome Page</strong></td>
-    <td><strong>Worker List</strong></td>
+    <td><strong>Job List</strong></td>
     <td><strong>Admin Panel</strong></td>
   </tr>
   <tr>
     <td><img src="Images/skillhire welcome.PNG" width="300"/></td>
-    <td><img src="Images/skillhire picture 2.PNG" width="300"/></td>
-    <td><img src="Images/skillhire picture 3.PNG" width="300"/></td>
+    <td><img src="Images/skillhire picture 5.PNG" width="300"/></td>
+    <td><img src="Images/skillhire picture 11.PNG" width="300"/></td>
   </tr>
 </table>
 
