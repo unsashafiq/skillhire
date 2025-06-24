@@ -57,7 +57,8 @@ skillhire/
 
 
 
-⚙️ Getting Started
+## ⚙️ Getting Started
+
 To run this project locally:
 
 

@@ -26,7 +26,11 @@ SECRET_KEY = 'django-insecure-d0x8o2^ytvba@v3@cqr@y$tus%-e0kep=eh3**%b*sy3a&eev(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'skillhire.onrender.com' ,
+    'skillhire.onrender.com', '127.0.0.1', 'localhost'
+]
+
 
 
 # Application definition
@@ -54,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_browser_reload.middleware.BrowserReloadMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'skillhire.urls'
@@ -128,6 +133,7 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 AUTH_USER_MODEL = 'core.Employer'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

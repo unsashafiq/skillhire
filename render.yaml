@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: skillhire
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn skillhire.wsgi
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: skillhire.settings
